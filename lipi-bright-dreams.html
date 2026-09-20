@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lipi's Bright Dreams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400&family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#cfe8ee; --paper:#fbfdf7; --ink:#1c2b33; --muted:#52646d; --line:#b9d6dd;
+  --river:#0e4d64; --paddy:#1c7c54; --marigold:#f6b400; --hibiscus:#d62839; --on-hib:#ffffff;
+  --stitch:#e0a100; --hl:#ffe7a0; --vtint:#d7f0dc; --vline:#1c7c54;
+  --ok:#17693f; --ok-bg:#d9f2e2; --no:#a4161f; --no-bg:#fde3e5;
+  --shadow:0 18px 40px rgba(14,77,100,.22);
+  --fs:1;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b1a23; --paper:#132833; --ink:#e8f1ee; --muted:#a3b8bf; --line:#27475a;
+    --river:#8fd6ea; --paddy:#63cf95; --marigold:#ffc933; --hibiscus:#ff7d8b; --on-hib:#2a0a10;
+    --stitch:#c99a1c; --hl:#5c4b12; --vtint:#1c4a36; --vline:#63cf95;
+    --ok:#7fe0a6; --ok-bg:#173a2a; --no:#ff9aa4; --no-bg:#43202a;
+    --shadow:0 18px 40px rgba(0,0,0,.5);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b1a23; --paper:#132833; --ink:#e8f1ee; --muted:#a3b8bf; --line:#27475a;
+  --river:#8fd6ea; --paddy:#63cf95; --marigold:#ffc933; --hibiscus:#ff7d8b; --on-hib:#2a0a10;
+  --stitch:#c99a1c; --hl:#5c4b12; --vtint:#1c4a36; --vline:#63cf95;
+  --ok:#7fe0a6; --ok-bg:#173a2a; --no:#ff9aa4; --no-bg:#43202a;
+  --shadow:0 18px 40px rgba(0,0,0,.5);
+  color-scheme:dark;
+}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;height:100%;display:flex;flex-direction:column;
+  background:var(--bg);color:var(--ink);
+  font-family:'Andika','Hind Siliguri','Noto Sans Bengali',system-ui,-apple-system,'Segoe UI',sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
+.bn{font-family:'Baloo Da 2','Hind Siliguri','Noto Sans Bengali','Kalpurush','Nirmala UI',sans-serif}
+
+/* ---------- top bar ---------- */
+.top{display:flex;align-items:center;gap:8px;padding:8px 14px}
+.brand{flex:1;min-width:0;display:flex;align-items:center;gap:10px;font-family:'Baloo Da 2','Trebuchet MS',sans-serif;font-weight:700;font-size:1.15rem;color:var(--river)}
+.brand span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand svg{flex:none}
+.ib{
+  min-width:42px;height:42px;padding:0 10px;border-radius:12px;border:2px solid var(--line);
+  background:var(--paper);color:var(--river);font-family:'Baloo Da 2',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;
+}
+.ib:hover{border-color:var(--river)}
+
+/* ---------- stage ---------- */
+.stagewrap{position:relative;flex:1;min-height:0;display:flex}
+.stage{flex:1;overflow-y:auto;padding:10px 14px 22px;-webkit-overflow-scrolling:touch}
+
+.page{
+  position:relative;isolation:isolate;max-width:1040px;margin:0 auto;
+  background:var(--paper);border-radius:8px;box-shadow:var(--shadow);
+  padding:34px;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:44px;align-items:center;
+  animation:turnIn .38s cubic-bezier(.2,.7,.2,1) both;
+}
+.page.back{animation-name:turnBack}
+.page::after{ /* kantha running-stitch margin */
+  content:"";position:absolute;inset:11px;border:2px dashed var(--stitch);border-radius:5px;pointer-events:none;opacity:.8;
+}
+.page::before{ /* book gutter */
+  content:"";position:absolute;z-index:-1;top:0;bottom:0;left:calc(56% - 18px);width:36px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(14,77,100,.09) 50%,transparent);
+}
+.page.solo{display:block;max-width:820px}
+.page.solo::before{display:none}
+@keyframes turnIn{from{opacity:0;transform:translateX(26px) rotate(.4deg)}to{opacity:1;transform:none}}
+@keyframes turnBack{from{opacity:0;transform:translateX(-26px) rotate(-.4deg)}to{opacity:1;transform:none}}
+
+.art{position:relative}
+.art::before{ /* pasted-in picture tape */
+  content:"";position:absolute;z-index:1;top:-10px;left:50%;width:92px;height:24px;transform:translateX(-50%) rotate(-3deg);
+  background:rgba(246,180,0,.6);border-radius:2px;
+}
+.art svg{display:block;width:100%;height:auto;border-radius:4px;border:4px solid #fff;box-shadow:0 8px 20px rgba(14,77,100,.22);transform:rotate(-1deg)}
+
+.text{min-width:0}
+.titlerow{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.chno{
+  flex:none;width:46px;height:46px;border-radius:50%;border:2.5px dashed var(--stitch);
+  display:grid;place-items:center;font-family:'Baloo Da 2',sans-serif;font-weight:800;font-size:1.3rem;color:var(--river);
+}
+h1,h2{font-family:'Baloo Da 2','Trebuchet MS',sans-serif;color:var(--river);margin:0;line-height:1.1;font-weight:700}
+h2{font-size:clamp(1.7rem,3.6vw,2.3rem)}
+h1{font-size:clamp(2.6rem,7vw,4.4rem);font-weight:800;line-height:1}
+.body{font-size:calc(1.2rem * var(--fs));line-height:1.95;margin:14px 0 18px;max-width:34em}
+.sent{padding:1px 2px;border-radius:6px;cursor:pointer;transition:background .2s}
+.sent:hover{background:var(--hl)}
+.sent.reading{background:var(--hl);box-shadow:0 0 0 3px var(--hl)}
+.vocab{
+  font:inherit;color:inherit;cursor:help;border:0;border-bottom:3px solid var(--vline);border-radius:3px 3px 0 0;
+  background:var(--vtint);padding:0 3px;
+}
+.vocab:hover{filter:brightness(.96)}
+.hint{color:var(--muted);font-size:.92rem;line-height:1.6;margin:14px 0 0}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:'Baloo Da 2','Trebuchet MS',sans-serif;font-weight:700;font-size:1.05rem;line-height:1;
+  padding:.8em 1.25em;border-radius:12px;border:2px solid var(--hibiscus);
+  background:var(--hibiscus);color:var(--on-hib);cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.2);
+}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.2)}
+.btn:disabled{opacity:.45;cursor:default;box-shadow:none}
+.btn.ghost{background:transparent;color:var(--river);border-color:var(--river);box-shadow:none}
+.btn.big{font-size:1.25rem;padding:.85em 1.5em}
+
+/* cover */
+.cover .bnsub{font-size:1.5rem;color:var(--paddy);margin:8px 0 0;font-weight:600}
+.cover .lead{font-size:1.15rem;line-height:1.7;margin:16px 0 20px;max-width:26em}
+.feat{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px;padding:0;list-style:none}
+.feat li{display:inline-flex;align-items:center;gap:8px;border:2px dashed var(--stitch);border-radius:10px;padding:6px 12px;font-size:.95rem}
+
+/* solo pages */
+.solo h2{margin-bottom:6px}
+.lead{color:var(--muted);line-height:1.6;margin:0 0 20px}
+.fcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
+.fc{position:relative;height:158px;perspective:800px;cursor:pointer}
+.fc .in{position:absolute;inset:0;transition:transform .5s;transform-style:preserve-3d}
+.fc.flipped .in{transform:rotateY(180deg)}
+.face{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px;text-align:center;
+}
+.face.front{background:var(--river);color:var(--paper);border:2px solid var(--river)}
+.face.front .w{font-family:'Baloo Da 2',sans-serif;font-weight:700;font-size:1.3rem;line-height:1.1}
+.face.back{transform:rotateY(180deg);background:var(--paper);border:2px dashed var(--stitch)}
+.face.back .bnw{font-size:1.4rem;font-weight:700;color:var(--paddy);line-height:1.2}
+.face.back .df{font-size:.82rem;line-height:1.45;color:var(--ink)}
+.spk{border:2px solid currentColor;background:transparent;border-radius:999px;width:38px;height:38px;cursor:pointer;display:grid;place-items:center;padding:0}
+.spk svg{display:block}
+.face.front .spk{color:var(--marigold)}
+
+/* quiz */
+.qhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px;color:var(--muted);font-size:.95rem}
+.qbar{display:flex;gap:6px;margin-bottom:18px}
+.qbar i{flex:1;height:8px;border-radius:99px;background:var(--line)}
+.qbar i.on{background:var(--paddy)}
+.qbar i.cur{background:var(--marigold)}
+.qtext{font-family:'Baloo Da 2',sans-serif;font-weight:600;font-size:clamp(1.25rem,3vw,1.6rem);line-height:1.3;color:var(--ink);margin:0 0 16px}
+.opts{display:grid;gap:10px;margin-bottom:16px}
+.opt{
+  display:flex;align-items:center;gap:14px;text-align:left;width:100%;cursor:pointer;
+  border:2px solid var(--line);background:var(--paper);border-radius:12px;padding:12px 14px;font-size:1.08rem;
+}
+.opt b{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--river);color:var(--river);font-family:'Baloo Da 2',sans-serif}
+.opt:hover:not(:disabled){border-color:var(--river)}
+.opt:disabled{cursor:default;color:var(--ink)}
+.opt.correct{background:var(--ok-bg);border-color:var(--ok)}
+.opt.correct b{background:var(--ok);border-color:var(--ok);color:var(--paper)}
+.opt.wrong{background:var(--no-bg);border-color:var(--no)}
+.opt.wrong b{background:var(--no);border-color:var(--no);color:var(--paper)}
+.fb{border-radius:12px;padding:12px 14px;line-height:1.6;margin-bottom:16px}
+.fb.ok{background:var(--ok-bg);color:var(--ok)}
+.fb.no{background:var(--no-bg);color:var(--no)}
+.fb strong{font-family:'Baloo Da 2',sans-serif}
+.score{text-align:center;padding:10px 0 6px}
+.stars{font-size:2.2rem;letter-spacing:.1em;color:var(--marigold);margin:4px 0}
+.stars .off{color:var(--line)}
+.bigscore{font-family:'Baloo Da 2',sans-serif;font-weight:800;font-size:3rem;color:var(--river);line-height:1}
+
+/* order game */
+.ocards{display:grid;gap:10px;margin-bottom:16px}
+.ocard{
+  display:flex;align-items:center;gap:14px;text-align:left;width:100%;cursor:pointer;
+  border:2px solid var(--line);background:var(--paper);border-radius:12px;padding:12px 14px;font-size:1.05rem;line-height:1.4;
+}
+.ocard .badge{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:2px dashed var(--stitch);font-family:'Baloo Da 2',sans-serif;font-weight:700;color:var(--muted)}
+.ocard:hover:not(:disabled){border-color:var(--river)}
+.ocard.placed{background:var(--ok-bg);border-color:var(--ok);cursor:default}
+.ocard.placed .badge{background:var(--ok);border:2px solid var(--ok);color:var(--paper)}
+.ocard:disabled{color:var(--ink)}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+
+/* end page */
+.page.end{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:start}
+.page.end::before{left:calc(50% - 18px)}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.fact{border:2px solid var(--line);border-radius:10px;padding:8px 12px;font-size:.95rem}
+.fact b{font-family:'Baloo Da 2',sans-serif;color:var(--river)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
+.chip{border:2px solid var(--line);background:var(--paper);border-radius:999px;padding:.4em .95em;cursor:pointer;font-size:.98rem}
+.chip[aria-pressed="true"]{background:var(--paddy);border-color:var(--paddy);color:var(--paper)}
+.chip:hover{border-color:var(--river)}
+.pledgemsg{min-height:1.6em;color:var(--ok);font-weight:700;margin:2px 0 14px}
+.dcard{
+  position:relative;background:var(--marigold);color:#2b1f00;border-radius:10px;padding:26px 20px;text-align:center;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);margin-bottom:16px;
+}
+.dcard::after{content:"";position:absolute;inset:8px;border:2px dashed #2b1f00;border-radius:6px;opacity:.55;pointer-events:none}
+.dcard .t{font-family:'Baloo Da 2',sans-serif;font-weight:700;font-size:1.05rem}
+.dcard .nm{font-family:'Baloo Da 2',sans-serif;font-weight:800;font-size:clamp(1.7rem,4vw,2.3rem);line-height:1.1;margin:6px 0;overflow-wrap:anywhere}
+.dcard .goal{font-family:'Baloo Da 2',sans-serif;font-weight:700;font-size:1.5rem;line-height:1.2;margin:4px 0 10px;overflow-wrap:anywhere}
+.dcard .sm{font-size:.92rem;line-height:1.5}
+.field{display:block;margin-bottom:12px;font-size:.95rem;color:var(--muted)}
+.field input{
+  display:block;width:100%;margin-top:4px;padding:.65em .8em;border-radius:10px;border:2px solid var(--line);
+  background:var(--paper);color:var(--ink);font-size:1.05rem;
+}
+.field input:focus{border-color:var(--river);outline:none}
+
+/* meaning popover */
+.def{
+  position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:20;width:min(92%,440px);
+  background:var(--river);color:var(--paper);border-radius:14px;padding:14px 16px 16px;box-shadow:0 14px 34px rgba(0,0,0,.35);display:none;
+}
+.def.open{display:block;animation:pop .22s ease-out}
+@keyframes pop{from{opacity:0;transform:translateX(-50%) translateY(12px)}to{opacity:1;transform:translateX(-50%)}}
+.def .dh{display:flex;align-items:center;gap:10px}
+.def .dw{font-family:'Baloo Da 2',sans-serif;font-weight:800;font-size:1.5rem;line-height:1}
+.def .dbn{font-size:1.25rem;color:var(--marigold);font-weight:600;margin:6px 0 2px}
+.def p{margin:0;line-height:1.55;font-size:.98rem}
+.def .spk{color:var(--marigold);width:36px;height:36px}
+.def .x{margin-left:auto;border:0;background:transparent;color:var(--paper);font-size:1.6rem;line-height:1;cursor:pointer;width:36px;height:36px;border-radius:8px}
+
+/* footer nav */
+.nav{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--paper);border-top:2px dashed var(--stitch)}
+.prog{flex:1;min-width:0;text-align:center}
+.pl{font-size:.85rem;color:var(--muted)}
+.bar{height:8px;border-radius:99px;background:var(--line);margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--paddy);border-radius:99px;transition:width .35s}
+.nav .btn{padding:.7em 1em}
+
+/* contents overlay */
+.overlay{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(6,20,28,.55);
+  padding:calc(env(safe-area-inset-top,0px) + 16px) 16px calc(env(safe-area-inset-bottom,0px) + 16px)}
+.overlay.open{display:flex}
+.panel{width:min(100%,460px);max-height:100%;overflow:auto;background:var(--paper);border-radius:10px;padding:18px;box-shadow:var(--shadow)}
+.panel .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.panel h3{margin:0;font-family:'Baloo Da 2',sans-serif;font-size:1.5rem;color:var(--river)}
+.panel ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.ti{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:2px solid transparent;background:transparent;border-radius:10px;padding:8px 10px;cursor:pointer;font-size:1.02rem}
+.ti:hover{background:var(--vtint)}
+.ti.cur{border-color:var(--marigold)}
+.ti .n{flex:none;width:32px;height:32px;border-radius:50%;border:2px dashed var(--stitch);display:grid;place-items:center;font-family:'Baloo Da 2',sans-serif;font-weight:700;color:var(--river)}
+
+@media (max-width:820px){
+  .stage{padding:8px 10px 18px}
+  .page{grid-template-columns:1fr;gap:26px;padding:30px 26px}
+  .page::before{display:none}
+  .page.end{grid-template-columns:1fr}
+  .brand{font-size:1rem}
+  .nav .btn .lb{display:none}
+  .nav .btn{padding:.7em .9em}
+}
+@media (prefers-reduced-motion:reduce){
+  .page,.page.back,.def.open,.shake{animation:none}
+  .fc .in,.bar i{transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- shared drawing parts -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+  <linearGradient id="skyDay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc6f0"/><stop offset="1" stop-color="#e2f5ff"/></linearGradient>
+  <linearGradient id="skyDawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb08a"/><stop offset="1" stop-color="#ffe9c9"/></linearGradient>
+
+  <symbol id="spark" viewBox="-10 -10 20 20"><path d="M0-9 L2.4-2.4 L9 0 L2.4 2.4 L0 9 L-2.4 2.4 L-9 0 L-2.4-2.4Z" fill="#ffb703"/></symbol>
+
+  <!-- Lipi, seated in her wheelchair -->
+  <symbol id="lipi" viewBox="0 0 130 120">
+    <path d="M30 66 L28 34 L17 34" fill="none" stroke="#2f3e5c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M84 66 L100 100" stroke="#2f3e5c" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="102" cy="108" r="8" fill="#e5e5ea" stroke="#2f3e5c" stroke-width="4"/>
+    <ellipse cx="29" cy="28" rx="4.5" ry="10" fill="#1d1a1f"/>
+    <rect x="32" y="30" width="24" height="38" rx="10" style="fill:var(--shirt,#e76f51)"/>
+    <circle cx="44" cy="17" r="13" fill="#c68a5b"/>
+    <path d="M31 17 C29 1 59 1 57 17 C51 8 37 8 31 17 Z" fill="#1d1a1f"/>
+    <circle cx="33" cy="11" r="3.6" fill="#ffd166"/>
+    <circle cx="39" cy="18" r="1.7" fill="#2b2d42"/><circle cx="50" cy="18" r="1.7" fill="#2b2d42"/>
+    <circle cx="35.5" cy="23" r="2.6" fill="#f28482" opacity=".5"/><circle cx="53.5" cy="23" r="2.6" fill="#f28482" opacity=".5"/>
+    <path d="M38 22.5 Q44.5 30 51 22.5" fill="none" stroke="#2b2d42" stroke-width="2" stroke-linecap="round"/>
+    <rect x="38" y="58" width="46" height="12" rx="6" style="fill:var(--pants,#3d5a80)"/>
+    <path d="M80 64 L92 95" stroke-width="11" stroke-linecap="round" style="stroke:var(--pants,#3d5a80)"/>
+    <ellipse cx="96" cy="100" rx="10" ry="5" fill="#222" transform="rotate(20 96 100)"/>
+    <circle cx="48" cy="88" r="27" fill="none" stroke="#2f3e5c" stroke-width="5"/>
+    <circle cx="48" cy="88" r="21" fill="none" stroke="#8d99ae" stroke-width="1.8"/>
+    <circle cx="48" cy="88" r="4.5" fill="#2f3e5c"/>
+    <path d="M50 40 L65 66" stroke="#c68a5b" stroke-width="7" stroke-linecap="round"/>
+    <path d="M50 40 L54 47" stroke-width="9" stroke-linecap="round" style="stroke:var(--shirt,#e76f51)"/>
+    <circle cx="66" cy="68" r="4.5" fill="#c68a5b"/>
+  </symbol>
+
+  <!-- standing person -->
+  <symbol id="person" viewBox="0 0 60 122">
+    <circle cx="30" cy="10" r="6.5" style="fill:var(--hair,#1d1a1f);opacity:var(--bun,0)"/>
+    <rect x="21" y="92" width="7" height="24" rx="3" style="fill:var(--skin,#c68a5b)"/>
+    <rect x="32" y="92" width="7" height="24" rx="3" style="fill:var(--skin,#c68a5b)"/>
+    <ellipse cx="24" cy="118" rx="7" ry="3.5" fill="#333"/><ellipse cx="36" cy="118" rx="7" ry="3.5" fill="#333"/>
+    <path d="M19 62 L41 62 L44 102 L16 102 Z" style="fill:var(--bottom,#3d5a80)"/>
+    <rect x="17" y="36" width="26" height="34" rx="11" style="fill:var(--top,#e76f51)"/>
+    <path d="M19 42 L12 70" stroke-width="7" stroke-linecap="round" style="stroke:var(--skin,#c68a5b)"/>
+    <path d="M41 42 L48 70" stroke-width="7" stroke-linecap="round" style="stroke:var(--skin,#c68a5b)"/>
+    <circle cx="30" cy="24" r="12" style="fill:var(--skin,#c68a5b)"/>
+    <path d="M18 24 C17 8 43 8 42 24 C37 16 23 16 18 24 Z" style="fill:var(--hair,#1d1a1f)"/>
+    <circle cx="26" cy="25" r="1.4" fill="#2b2d42"/><circle cx="34" cy="25" r="1.4" fill="#2b2d42"/>
+    <path d="M25.5 29.5 Q30 34.5 34.5 29.5" fill="none" stroke="#2b2d42" stroke-width="1.6" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- head and shoulders -->
+  <symbol id="bust" viewBox="0 0 80 80">
+    <ellipse cx="17" cy="42" rx="6" ry="13" style="fill:var(--hair,#1d1a1f);opacity:var(--pig,0)"/>
+    <ellipse cx="63" cy="42" rx="6" ry="13" style="fill:var(--hair,#1d1a1f);opacity:var(--pig,0)"/>
+    <path d="M6 80 C6 56 22 50 40 50 C58 50 74 56 74 80 Z" style="fill:var(--top,#e76f51)"/>
+    <circle cx="40" cy="30" r="19" style="fill:var(--skin,#c68a5b)"/>
+    <path d="M21 30 C19 6 61 6 59 30 C52 18 28 18 21 30 Z" style="fill:var(--hair,#1d1a1f)"/>
+    <circle cx="33" cy="33" r="2" fill="#2b2d42"/><circle cx="47" cy="33" r="2" fill="#2b2d42"/>
+    <path d="M32 39.5 Q40 47 48 39.5" fill="none" stroke="#2b2d42" stroke-width="2.4" stroke-linecap="round"/>
+  </symbol>
+</defs>
+</svg>
+
+<header class="top">
+  <div class="brand">
+    <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M3 6 Q9 3 14 6 Q19 3 25 6 V22 Q19 19 14 22 Q9 19 3 22Z" fill="var(--river)"/><path d="M14 6 V22" stroke="var(--paper)" stroke-width="2"/></svg>
+    <span>Lipi's Bright Dreams</span>
+  </div>
+  <button class="ib" id="btnToc" aria-label="Open contents" title="Contents">&#9776;</button>
+  <button class="ib" id="btnSm" aria-label="Make text smaller" title="Smaller text">A&minus;</button>
+  <button class="ib" id="btnLg" aria-label="Make text larger" title="Larger text">A+</button>
+  <button class="ib" id="btnTheme" aria-label="Switch between light and dark" title="Light or dark"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="display:block;margin:auto"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 3.5 A8.5 8.5 0 0 1 12 20.5Z" fill="currentColor"/></svg></button>
+</header>
+
+<div class="stagewrap">
+  <main class="stage" id="stage" tabindex="-1"></main>
+  <aside class="def" id="def" role="dialog" aria-label="Word meaning">
+    <div class="dh">
+      <span class="dw" id="dWord"></span>
+      <button class="spk" id="dSay" aria-label="Hear the word"></button>
+      <button class="x" id="dClose" aria-label="Close">&times;</button>
+    </div>
+    <div class="dbn bn" id="dBn"></div>
+    <p id="dDef"></p>
+  </aside>
+</div>
+
+<footer class="nav">
+  <button class="btn ghost" id="prev"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 L8 12 L15 19" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lb">Back</span></button>
+  <div class="prog"><div class="pl" id="progLabel"></div><div class="bar"><i id="progBar"></i></div></div>
+  <button class="btn" id="next"><span class="lb" id="nextLbl">Next page</span><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5 L16 12 L9 19" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</footer>
+
+<div class="overlay" id="toc" role="dialog" aria-modal="true" aria-label="Contents">
+  <div class="panel">
+    <div class="ph"><h3>Contents</h3><button class="ib" id="tocClose" aria-label="Close contents">&times;</button></div>
+    <ol id="tocList"></ol>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Drawing helpers
+   ============================================================ */
+const V = o => Object.entries(o).map(([k,v]) => '--'+k+':'+v).join(';');
+const person = (x,y,s,o) => `<use href="#person" x="${x}" y="${y}" width="${60*s}" height="${122*s}" style="${V(o)}"/>`;
+const bust   = (x,y,s,o) => `<use href="#bust" x="${x}" y="${y}" width="${s}" height="${s}" style="${V(o)}"/>`;
+const lipi   = (x,y,s=1) => `<use href="#lipi" x="${x}" y="${y}" width="${130*s}" height="${120*s}" style="--shirt:#e76f51;--pants:#3d5a80"/>`;
+const spark  = (x,y,s) => `<use href="#spark" x="${x}" y="${y}" width="${s}" height="${s}"/>`;
+const HAIR = '#1d1a1f';
+const SK = ['#c68a5b','#e0ac7e','#b9835a','#d9a066'];
+const GLYPH = "font-family=\"'Segoe UI Symbol','Noto Sans Symbols 2','DejaVu Sans',serif\"";
+
+const bunting = (y0) => {
+  const flags = [[40,37,'#e76f51'],[100,45,'#f4a261'],[160,49,'#2a9d8f'],[220,50,'#e9c46a'],[280,47,'#e76f51'],[340,40,'#2a9d8f']];
+  return `<path d="M0 30 Q200 70 400 30" fill="none" stroke="#8d6e63" stroke-width="2"/>` +
+    flags.map(([x,y,c]) => `<polygon points="${x-12},${y} ${x+12},${y} ${x},${y+26}" fill="${c}"/>`).join('');
+};
+
+const crowd = ['#e63946','#4361ee','#2a9d8f','#f4a261','#8e6bbf','#ef476f'].map((c,i) =>
+  bust(6+i*66, 248+(i%2)*8, 62, {skin:SK[i%4], hair:HAIR, top:c, pig:(i%3===1?1:0)})).join('');
+
+/* ============================================================
+   Illustrations
+   ============================================================ */
+const ART = {};
+
+ART.cover = `<svg viewBox="0 0 400 300" role="img" aria-label="Lipi smiling in her wheelchair under a bright sun, with stars and chess pieces around her">
+<rect width="400" height="300" fill="url(#skyDawn)"/>
+<g stroke="#ffd166" stroke-width="7" stroke-linecap="round" opacity=".6">
+<line x1="200" y1="42" x2="200" y2="18"/><line x1="254" y1="56" x2="266" y2="36"/><line x1="293" y1="96" x2="314" y2="84"/><line x1="308" y1="150" x2="332" y2="150"/>
+<line x1="293" y1="204" x2="314" y2="216"/><line x1="254" y1="244" x2="266" y2="264"/><line x1="146" y1="244" x2="134" y2="264"/><line x1="106" y1="204" x2="86" y2="216"/>
+<line x1="92" y1="150" x2="68" y2="150"/><line x1="106" y1="96" x2="86" y2="84"/><line x1="146" y1="56" x2="134" y2="36"/></g>
+<circle cx="200" cy="150" r="98" fill="#ffe29a"/>
+<path d="M0 250 Q100 224 200 244 T400 238 V300 H0Z" fill="#7bc96f"/>
+<path d="M0 276 Q120 256 240 272 T400 268 V300 H0Z" fill="#4fa957"/>
+${lipi(112,100,1.35)}
+<g ${GLYPH} fill="#3b2f2f" opacity=".85"><text x="46" y="100" font-size="46">&#9822;</text><text x="316" y="96" font-size="42">&#9819;</text><text x="332" y="212" font-size="32">&#9823;&#65038;</text><text x="34" y="214" font-size="34">&#9820;</text></g>
+${spark(70,30,20)}${spark(322,36,16)}${spark(360,120,14)}${spark(24,140,14)}${spark(300,232,16)}${spark(96,236,14)}
+</svg>`;
+
+ART.s1 = `<svg viewBox="0 0 400 300" role="img" aria-label="Lipi smiling in her wheelchair in front of her village home, with her grandparents nearby">
+<rect width="400" height="300" fill="url(#skyDay)"/>
+<circle cx="338" cy="52" r="40" fill="#ffd166" opacity=".35"/><circle cx="338" cy="52" r="26" fill="#ffd166"/>
+<g fill="#fff" opacity=".92"><ellipse cx="72" cy="52" rx="34" ry="12"/><ellipse cx="96" cy="43" rx="24" ry="12"/><ellipse cx="236" cy="86" rx="32" ry="11"/><ellipse cx="256" cy="78" rx="20" ry="10"/></g>
+<path d="M120 62 q6 -8 12 0 q6 -8 12 0" fill="none" stroke="#33415c" stroke-width="2"/>
+<path d="M0 196 Q90 150 180 190 T400 180 V300 H0Z" fill="#a8d98f"/>
+<rect y="222" width="400" height="78" fill="#6abf69"/>
+<path d="M372 240 Q378 195 368 150" fill="none" stroke="#8d6e63" stroke-width="9" stroke-linecap="round"/>
+<g fill="#2d6a4f"><ellipse cx="350" cy="146" rx="26" ry="8" transform="rotate(-25 350 146)"/><ellipse cx="386" cy="146" rx="26" ry="8" transform="rotate(25 386 146)"/><ellipse cx="368" cy="132" rx="8" ry="24"/><ellipse cx="352" cy="160" rx="24" ry="7" transform="rotate(30 352 160)"/><ellipse cx="386" cy="160" rx="24" ry="7" transform="rotate(-30 386 160)"/></g>
+<rect x="14" y="160" width="116" height="82" fill="#e9c98f"/>
+<polygon points="2,162 72,116 142,162" fill="#8d6e63"/>
+<rect x="58" y="190" width="28" height="52" rx="3" fill="#8b5e3c"/>
+<rect x="24" y="182" width="22" height="22" fill="#bde0fe" stroke="#8b5e3c" stroke-width="3"/>
+<rect x="98" y="182" width="22" height="22" fill="#bde0fe" stroke="#8b5e3c" stroke-width="3"/>
+${person(138,158,.72,{skin:'#b9835a',hair:'#e8e8e8',top:'#f8f9fa',bottom:'#4a6fa5'})}
+${person(176,158,.72,{skin:'#c68a5b',hair:'#f1f1f1',bun:1,top:'#8e6bbf',bottom:'#8e6bbf'})}
+${lipi(228,150)}
+<g><circle cx="30" cy="272" r="4" fill="#ff8fab"/><circle cx="46" cy="282" r="4" fill="#ffd166"/><circle cx="188" cy="284" r="4" fill="#ff8fab"/><circle cx="206" cy="274" r="4" fill="#fff"/><circle cx="330" cy="280" r="4" fill="#ffd166"/><circle cx="102" cy="276" r="4" fill="#fff"/></g>
+</svg>`;
+
+ART.s2 = `<svg viewBox="0 0 400 300" role="img" aria-label="Morning at home: Lipi's mother helps her pack books into the school bag">
+<defs><clipPath id="winClip"><rect x="52" y="24" width="104" height="86" rx="6"/></clipPath></defs>
+<rect width="400" height="300" fill="#ffe8cc"/>
+<rect y="226" width="400" height="74" fill="#c08552"/><rect y="220" width="400" height="8" fill="#a06a3f"/>
+<g clip-path="url(#winClip)"><rect x="52" y="24" width="104" height="86" fill="#ffd6a5"/><circle cx="104" cy="100" r="30" fill="#ff9f1c"/><path d="M52 100 Q80 88 104 98 T156 94 V110 H52Z" fill="#6a994e"/></g>
+<rect x="52" y="24" width="104" height="86" rx="6" fill="none" stroke="#8b5e3c" stroke-width="6"/>
+<path d="M104 24 V110 M52 67 H156" stroke="#8b5e3c" stroke-width="4"/>
+<circle cx="214" cy="62" r="22" fill="#fff" stroke="#8b5e3c" stroke-width="4"/>
+<path d="M214 62 V46 M214 62 L208 72" stroke="#2b2d42" stroke-width="3" stroke-linecap="round"/><circle cx="214" cy="62" r="2.5" fill="#2b2d42"/>
+<rect x="196" y="178" width="130" height="10" rx="3" fill="#8b5e3c"/>
+<rect x="206" y="188" width="8" height="40" fill="#6f4a2d"/><rect x="308" y="188" width="8" height="40" fill="#6f4a2d"/>
+<rect x="204" y="169" width="50" height="9" rx="1.5" fill="#4361ee"/><rect x="207" y="160" width="44" height="9" rx="1.5" fill="#f72585"/><rect x="203" y="151" width="48" height="9" rx="1.5" fill="#4cc9f0"/>
+<path d="M276 138 Q286 124 296 138" fill="none" stroke="#9d0208" stroke-width="4"/>
+<rect x="262" y="136" width="48" height="42" rx="10" fill="#e63946"/><rect x="270" y="156" width="32" height="16" rx="5" fill="#c1121f"/><path d="M262 148 H310" stroke="#9d0208" stroke-width="2"/>
+${lipi(62,112)}
+${person(330,112,1,{skin:'#c68a5b',hair:HAIR,bun:1,top:'#2a9d8f',bottom:'#2a9d8f'})}
+<g><rect x="262" y="24" width="124" height="34" rx="14" fill="#fff" stroke="#e5d3b3" stroke-width="2"/><path d="M350 58 L358 76 L338 58Z" fill="#fff"/><text x="324" y="45" text-anchor="middle" font-size="12.5" font-weight="700" fill="#5a4630" font-family="'Andika',sans-serif">Books ready, Lipi!</text></g>
+</svg>`;
+
+ART.s3 = `<svg viewBox="0 0 400 300" role="img" aria-label="In class, friends welcome Lipi and Ms. Anita points at the blackboard">
+<rect width="400" height="300" fill="#f3e7c9"/>
+<rect y="222" width="400" height="78" fill="#b98b5e"/><rect y="216" width="400" height="8" fill="#94683f"/>
+<rect x="100" y="24" width="216" height="104" rx="6" fill="#8b5e3c"/><rect x="107" y="31" width="202" height="90" rx="3" fill="#2d6a4f"/>
+<text x="208" y="68" text-anchor="middle" font-family="'Baloo Da 2','Andika',sans-serif" font-size="26" font-weight="700" fill="#f1faee">Hello, Class!</text>
+<text x="208" y="102" text-anchor="middle" font-family="'Baloo Da 2','Andika',sans-serif" font-size="18" font-weight="600" fill="#ffd166">A B C   1 2 3</text>
+<rect x="150" y="128" width="116" height="5" rx="2" fill="#6f4a2d"/>
+${person(6,152,.8,{skin:SK[1],hair:HAIR,top:'#4361ee',bottom:'#22223b'})}
+${person(46,150,.8,{skin:SK[0],hair:HAIR,top:'#f72585',bottom:'#3a0ca3'})}
+${lipi(92,132)}
+<rect x="228" y="192" width="94" height="10" rx="3" fill="#8b5e3c"/><rect x="234" y="202" width="7" height="46" fill="#6f4a2d"/><rect x="308" y="202" width="7" height="46" fill="#6f4a2d"/>
+<rect x="246" y="184" width="34" height="8" rx="1.5" fill="#4361ee"/><path d="M290 190 L312 178" stroke="#ffd166" stroke-width="4" stroke-linecap="round"/>
+${person(336,126,1,{skin:'#c68a5b',hair:HAIR,bun:1,top:'#e9c46a',bottom:'#2a9d8f'})}
+<path d="M348 196 L302 112" stroke="#6f4a2d" stroke-width="3" stroke-linecap="round"/>
+<g><rect x="8" y="112" width="84" height="28" rx="12" fill="#fff" stroke="#e5d3b3" stroke-width="2"/><path d="M30 140 L44 140 L38 158Z" fill="#fff"/><text x="50" y="131" text-anchor="middle" font-size="12" font-weight="700" fill="#5a4630" font-family="'Andika',sans-serif">Come, Lipi!</text></g>
+</svg>`;
+
+ART.s4 = `<svg viewBox="0 0 400 300" role="img" aria-label="At the school field, children play football while Lipi thinks about chess">
+<defs><pattern id="chkS4" width="14" height="10" patternUnits="userSpaceOnUse" patternTransform="translate(332 200)"><rect width="7" height="5" fill="#5b3a1e"/><rect x="7" y="5" width="7" height="5" fill="#5b3a1e"/></pattern></defs>
+<rect width="400" height="300" fill="url(#skyDay)"/>
+<circle cx="52" cy="46" r="24" fill="#ffd166"/>
+<g fill="#fff" opacity=".92"><ellipse cx="150" cy="40" rx="34" ry="11"/><ellipse cx="172" cy="32" rx="22" ry="10"/><ellipse cx="380" cy="30" rx="26" ry="9"/></g>
+<rect x="112" y="112" width="176" height="82" fill="#f4d58d"/><rect x="104" y="100" width="192" height="16" fill="#bc4749"/>
+<g fill="#8ecae6" stroke="#6f4a2d" stroke-width="2"><rect x="124" y="132" width="24" height="22"/><rect x="158" y="132" width="24" height="22"/><rect x="218" y="132" width="24" height="22"/><rect x="252" y="132" width="24" height="22"/></g>
+<rect x="188" y="150" width="24" height="44" fill="#6f4a2d"/>
+<line x1="200" y1="58" x2="200" y2="100" stroke="#6f4a2d" stroke-width="3"/>
+<rect x="202" y="58" width="36" height="22" fill="#006a4e"/><circle cx="218" cy="69" r="7" fill="#f42a41"/>
+<rect y="192" width="400" height="108" fill="#7bc96f"/><path d="M0 192 H400" stroke="#4fa957" stroke-width="3"/>
+${person(14,142,.85,{skin:SK[1],hair:HAIR,top:'#e63946',bottom:'#22223b'})}
+${person(92,150,.78,{skin:SK[0],hair:HAIR,top:'#2a9d8f',bottom:'#22223b'})}
+<circle cx="70" cy="246" r="9" fill="#fff" stroke="#222" stroke-width="2"/><path d="M70 240 l5 4 -2 6 h-6 l-2 -6z" fill="#222"/>
+${lipi(196,148)}
+<rect x="328" y="210" width="66" height="8" rx="2" fill="#8b5e3c"/><rect x="334" y="218" width="6" height="46" fill="#6f4a2d"/><rect x="382" y="218" width="6" height="46" fill="#6f4a2d"/>
+<rect x="332" y="200" width="56" height="10" fill="#f5e6c8"/><rect x="332" y="200" width="56" height="10" fill="url(#chkS4)"/>
+<g ${GLYPH} font-size="15" fill="#2b2d42"><text x="344" y="200" text-anchor="middle">&#9822;</text><text x="360" y="200" text-anchor="middle">&#9818;</text><text x="376" y="200" text-anchor="middle">&#9823;&#65038;</text></g>
+<g fill="#fff" opacity=".96"><circle cx="262" cy="150" r="4"/><circle cx="274" cy="136" r="6"/><circle cx="290" cy="120" r="8"/><ellipse cx="335" cy="86" rx="46" ry="34"/></g>
+<text x="335" y="103" text-anchor="middle" font-size="46" fill="#2b2d42" ${GLYPH}>&#9822;</text>
+</svg>`;
+
+ART.s5 = `<svg viewBox="0 0 400 300" role="img" aria-label="Lipi and her opponent play chess at the school competition">
+<defs><pattern id="chk18" width="36" height="36" patternUnits="userSpaceOnUse" patternTransform="translate(128 132)"><rect x="18" width="18" height="18" fill="#7a4b2a"/><rect y="18" width="18" height="18" fill="#7a4b2a"/></pattern></defs>
+<rect width="400" height="300" fill="#e4f3f0"/>
+${bunting()}
+<rect x="96" y="80" width="208" height="30" rx="8" fill="#d62839"/>
+<text x="200" y="100" text-anchor="middle" font-size="15" font-weight="700" fill="#fff" font-family="'Baloo Da 2','Andika',sans-serif">School Chess Competition</text>
+<rect x="128" y="132" width="144" height="144" fill="#f5e6c8"/><rect x="128" y="132" width="144" height="144" fill="url(#chk18)"/>
+<rect x="128" y="132" width="144" height="144" fill="none" stroke="#5b3a1e" stroke-width="5"/>
+<g ${GLYPH} font-size="16" text-anchor="middle" fill="#1b1b1f">
+<text x="209" y="146.5">&#9818;</text><text x="137" y="164.5">&#9820;</text><text x="173" y="182.5">&#9822;</text><text x="191" y="182.5">&#9823;&#65038;</text><text x="227" y="164.5">&#9823;&#65038;</text><text x="245" y="200.5">&#9819;</text></g>
+<g ${GLYPH} font-size="16" text-anchor="middle" fill="#fff" stroke="#2b2d42" stroke-width="1.6" paint-order="stroke">
+<text x="191" y="272.5">&#9818;</text><text x="209" y="236.5">&#9819;</text><text x="227" y="236.5">&#9822;</text><text x="191" y="254.5">&#9823;&#65038;</text><text x="209" y="254.5">&#9823;&#65038;</text><text x="173" y="236.5">&#9823;&#65038;</text><text x="137" y="272.5">&#9820;</text></g>
+${bust(28,150,96,{skin:'#c68a5b',hair:HAIR,top:'#e76f51',pig:1})}
+${bust(276,150,96,{skin:SK[1],hair:'#2b2d42',top:'#4361ee'})}
+<g><rect x="268" y="116" width="112" height="26" rx="13" fill="#fff" stroke="#c9dedb" stroke-width="2"/><path d="M304 142 L312 158 L322 142Z" fill="#fff"/><text x="324" y="133" text-anchor="middle" font-size="12.5" font-weight="700" fill="#24404a" font-family="'Andika',sans-serif">Welcome, Lipi!</text></g>
+${spark(20,124,16)}${spark(108,132,12)}
+</svg>`;
+
+ART.s6 = `<svg viewBox="0 0 400 300" role="img" aria-label="At the prize giving ceremony, Lipi receives a crest and a wooden chess set while the school cheers">
+<defs><pattern id="chkBox" width="12" height="10" patternUnits="userSpaceOnUse" patternTransform="translate(96 198)"><rect width="6" height="5" fill="#5b3a1e"/><rect x="6" y="5" width="6" height="5" fill="#5b3a1e"/></pattern></defs>
+<rect width="400" height="300" fill="#fff0dc"/>
+<path d="M0 0 H64 Q36 110 58 230 H0Z" fill="#c1121f"/><path d="M400 0 H336 Q364 110 342 230 H400Z" fill="#c1121f"/><rect width="400" height="14" fill="#9d0208"/>
+${bunting()}
+<g><rect x="120" y="70" width="8" height="4" fill="#ef476f" transform="rotate(30 124 72)"/><rect x="250" y="96" width="8" height="4" fill="#4cc9f0" transform="rotate(-20 254 98)"/><rect x="300" y="84" width="8" height="4" fill="#ffd166" transform="rotate(50 304 86)"/><rect x="174" y="98" width="8" height="4" fill="#06d6a0" transform="rotate(10 178 100)"/><rect x="92" y="120" width="8" height="4" fill="#4361ee" transform="rotate(-40 96 122)"/><rect x="340" y="130" width="8" height="4" fill="#ef476f" transform="rotate(20 344 132)"/><circle cx="230" cy="74" r="3" fill="#ffd166"/><circle cx="146" cy="110" r="3" fill="#4cc9f0"/><circle cx="280" cy="120" r="3" fill="#ef476f"/><circle cx="330" cy="70" r="3" fill="#06d6a0"/><circle cx="76" cy="96" r="3" fill="#ffd166"/></g>
+<rect x="20" y="226" width="360" height="30" rx="4" fill="#8d5a2b"/><rect x="20" y="226" width="360" height="6" fill="#a9713a"/>
+<rect x="96" y="198" width="50" height="28" rx="3" fill="#a0632a"/><rect x="96" y="198" width="50" height="10" fill="#f5e6c8"/><rect x="96" y="198" width="50" height="10" fill="url(#chkBox)"/>
+<text x="121" y="197" text-anchor="middle" font-size="20" fill="#2b2d42" ${GLYPH}>&#9822;</text>
+<rect x="318" y="212" width="30" height="14" rx="3" fill="#6f4a2d"/>
+<path d="M333 152 h-26 v30 q0 22 26 32 q26 -10 26 -32 v-30z" fill="#f4c542" stroke="#b5651d" stroke-width="4"/>
+<path d="M333 160 h-18 v22 q0 15 18 23 q18 -8 18 -23 v-22z" fill="#ffe08a"/>
+${spark(321,166,24)}
+${person(26,112,.95,{skin:'#c68a5b',hair:HAIR,bun:1,top:'#e9c46a',bottom:'#2a9d8f'})}
+${lipi(150,110)}
+<g><rect x="16" y="64" width="112" height="30" rx="13" fill="#fff" stroke="#f1d9c4" stroke-width="2"/><path d="M50 94 L58 108 L66 94Z" fill="#fff"/><text x="72" y="84" text-anchor="middle" font-size="12.5" font-weight="700" fill="#5a4630" font-family="'Andika',sans-serif">Well done, Lipi!</text></g>
+${crowd}
+</svg>`;
+
+ART.s7 = `<svg viewBox="0 0 400 300" role="img" aria-label="Lipi dreams of a school of her own for the children of her village">
+<rect width="400" height="300" fill="url(#skyDawn)"/>
+<rect y="250" width="400" height="50" fill="#7bc96f"/><path d="M0 250 H400" stroke="#4fa957" stroke-width="3"/>
+${lipi(20,150)}
+<g fill="#fff" opacity=".96"><circle cx="94" cy="160" r="5"/><circle cx="114" cy="148" r="8"/><circle cx="138" cy="132" r="11"/><ellipse cx="265" cy="105" rx="118" ry="80"/></g>
+<rect x="205" y="100" width="120" height="52" fill="#ffd166"/>
+<polygon points="198,100 265,66 332,100" fill="#d62839"/>
+<line x1="265" y1="66" x2="265" y2="44" stroke="#6f4a2d" stroke-width="2"/><rect x="265" y="44" width="16" height="10" fill="#006a4e"/><circle cx="272" cy="49" r="3" fill="#f42a41"/>
+<rect x="228" y="104" width="74" height="15" fill="#fff" stroke="#8b5e3c" stroke-width="1.5"/>
+<text x="265" y="115.5" text-anchor="middle" font-size="10" font-weight="700" fill="#8b5e3c" font-family="'Andika',sans-serif">Lipi's School</text>
+<rect x="215" y="126" width="18" height="16" fill="#bde0fe" stroke="#8b5e3c" stroke-width="2"/><rect x="297" y="126" width="18" height="16" fill="#bde0fe" stroke="#8b5e3c" stroke-width="2"/>
+<rect x="256" y="124" width="18" height="28" fill="#8b5e3c"/>
+${person(206,138,.3,{skin:SK[1],hair:HAIR,top:'#4361ee',bottom:'#22223b'})}
+${person(284,138,.3,{skin:SK[0],hair:HAIR,top:'#f72585',bottom:'#3a0ca3'})}
+${person(304,138,.3,{skin:SK[2],hair:HAIR,top:'#2a9d8f',bottom:'#22223b'})}
+${spark(24,90,18)}${spark(96,66,14)}${spark(358,40,18)}${spark(372,200,14)}${spark(190,24,14)}${spark(150,206,12)}
+</svg>`;
+
+/* ============================================================
+   Story, words, quiz
+   ============================================================ */
+const STORY = [
+  {title:"Meet Lipi", art:"s1", sentences:[
+    "Lipi lives with her [[grandparents|grandparents]] in a small [[village|village]].",
+    "She studies in a nearby primary school.",
+    "She has a bright smile and a heart full of [[dreams|dreams]].",
+    "She talks nicely and wins everyone's heart.",
+    "She is a lot like any other girls in her [[neighbourhood|neighbourhood]].",
+    "But Lipi cannot walk like her friends.",
+    "Instead, she uses a [[wheelchair|wheelchair]] to move."]},
+  {title:"A Happy Morning", art:"s2", sentences:[
+    "Every morning, Lipi wakes up early, gets dressed and takes her breakfast on time.",
+    "Lipi's mother helps her put books in the school bag."]},
+  {title:"Friends at School", art:"s3", sentences:[
+    "Lipi's classmates help her to sit at the front [[bench|bench]] of the class.",
+    "They also help her to move around the school.",
+    "Whenever her classmates play, they invite Lipi to join them.",
+    "Their class teacher Ms. Anita makes sure that Lipi feels [[comfortable|comfortable]] in the class.",
+    "Her teacher arranges Lipi's table so that she can see the [[blackboard|blackboard]] clearly."]},
+  {title:"School Is Her Favourite Place", art:"s4", sentences:[
+    "Lipi cannot move as quickly as her classmates, but she remains happy.",
+    "School is her favourite place.",
+    "Lipi loves to go to school on time.",
+    "She loves listening to stories, drawing pictures, and learning about the world.",
+    "She also loves playing chess.",
+    "While her classmates play football or cricket, Lipi becomes busy with her [[chessboard|chessboard]]."]},
+  {title:"The Chess Competition", art:"s5", sentences:[
+    "One day, the school arranged a chess [[competition|competition]].",
+    "Her [[opponent|opponent]] welcomed her warmly.",
+    "She remained [[focused|focused]] and [[attentive|attentive]] throughout the game and finally won."]},
+  {title:"Cheers and a Prize", art:"s6", sentences:[
+    "The whole school [[cheered|cheered]].",
+    "Ms. Anita [[congratulated|congratulated]] her.",
+    "The school arranged a prize giving [[ceremony|ceremony]].",
+    "Lipi received a [[crest|crest]] and a set of beautiful wooden chess."]},
+  {title:"Lipi's Big Dream", art:"s7", sentences:[
+    "Lipi wants to be a teacher.",
+    "Ms. Anita is her [[inspiration|inspiration]].",
+    "Lipi dreams of setting up a school for the local children.",
+    "She [[believes|believes]] that people with [[special needs|special needs]] can achieve amazing things in their lives."]}
+];
+
+const VOCAB = {
+  grandparents:{w:"grandparents", bn:"দাদা-দাদি, নানা-নানি", def:"Your mother's or father's parents."},
+  village:{w:"village", bn:"গ্রাম", def:"A small place in the countryside where people live."},
+  dreams:{w:"dreams", bn:"স্বপ্ন", def:"Hopes for what you want to be or do one day."},
+  neighbourhood:{w:"neighbourhood", bn:"পাড়া, আশপাশের এলাকা", def:"The area around your home and the people who live there."},
+  wheelchair:{w:"wheelchair", bn:"হুইলচেয়ার", def:"A chair with big wheels. A person who cannot walk easily can sit in it and move around."},
+  bench:{w:"bench", bn:"বেঞ্চ", def:"A long seat where more than one person can sit."},
+  comfortable:{w:"comfortable", bn:"আরামদায়ক, স্বস্তিতে", def:"Feeling relaxed, safe and happy."},
+  blackboard:{w:"blackboard", bn:"ব্ল্যাকবোর্ড", def:"A dark board in a classroom that the teacher writes on with chalk."},
+  chessboard:{w:"chessboard", bn:"দাবার ছক", def:"A square board with 64 small squares, used to play chess."},
+  competition:{w:"competition", bn:"প্রতিযোগিতা", def:"An event where people try their best to win."},
+  opponent:{w:"opponent", bn:"প্রতিপক্ষ", def:"The person you play against in a game."},
+  focused:{w:"focused", bn:"মনোযোগী", def:"Giving all your attention to one thing."},
+  attentive:{w:"attentive", bn:"সতর্ক, মনোযোগী", def:"Watching and listening carefully."},
+  cheered:{w:"cheered", bn:"উল্লাস করল", def:"Shouted happily to show support or joy."},
+  congratulated:{w:"congratulated", bn:"অভিনন্দন জানালেন", def:"Told someone \"well done\" for their success."},
+  ceremony:{w:"ceremony", bn:"অনুষ্ঠান", def:"A special event held for an important occasion."},
+  crest:{w:"crest", bn:"সম্মাননা স্মারক (ক্রেস্ট)", def:"A special badge or plaque given as an award."},
+  inspiration:{w:"inspiration", bn:"অনুপ্রেরণা", def:"A person who makes you want to do your best."},
+  believes:{w:"believes", bn:"বিশ্বাস করে", def:"Feels sure that something is true."},
+  "special needs":{w:"special needs", bn:"বিশেষ চাহিদা", def:"Needing extra help or support, for example because of a disability."}
+};
+const WORDBANK = ["wheelchair","neighbourhood","comfortable","competition","opponent","focused","attentive","congratulated","ceremony","crest","inspiration","special needs"];
+
+const QUIZ = [
+  {q:"Who does Lipi live with?", o:["Her grandparents","Her aunt and uncle","Her teacher","Her classmates"], a:0, why:"Lipi lives with her grandparents in a small village."},
+  {q:"How does Lipi move around?", o:["She rides a bicycle","She uses a wheelchair","She walks with a stick","She goes by rickshaw"], a:1, why:"She uses a wheelchair to move."},
+  {q:"Who makes sure Lipi feels comfortable in class?", o:["Her mother","Her grandmother","Ms. Anita","Her opponent"], a:2, why:"Ms. Anita, her class teacher, makes sure Lipi feels comfortable."},
+  {q:"What does Lipi play while her classmates play football or cricket?", o:["Ludo","Carrom","Hide-and-seek","Chess"], a:3, why:"Lipi becomes busy with her chessboard."},
+  {q:"What happened after Lipi won the chess game?", o:["The whole school cheered","Nobody noticed","The game was cancelled","She went home early"], a:0, why:"The whole school cheered and Ms. Anita congratulated her."},
+  {q:"What did Lipi receive at the prize giving ceremony?", o:["A gold medal and a bicycle","A book and a pen","A trophy and a cake","A crest and a set of wooden chess"], a:3, why:"Lipi received a crest and a set of beautiful wooden chess."},
+  {q:"What does Lipi want to be?", o:["A doctor","A pilot","A teacher","A cricketer"], a:2, why:"Lipi wants to be a teacher, just like Ms. Anita."}
+];
+
+const ORDER = [
+  "Lipi wakes up early and gets ready for school.",
+  "Her classmates help her to sit at the front bench.",
+  "Lipi wins the chess competition.",
+  "The whole school cheers for her.",
+  "Lipi dreams of setting up a school."
+];
+
+const GOALS = ["a teacher","a doctor","an engineer","an artist","a scientist","a chess champion","a writer"];
+const PLEDGES = ["I will help my friends.","I will invite everyone to play.","I will listen and be kind."];
+
+/* ============================================================
+   State and helpers
+   ============================================================ */
+const $ = (s, r=document) => r.querySelector(s);
+const stage = $('#stage'), defEl = $('#def');
+const synth = ('speechSynthesis' in window) ? window.speechSynthesis : null;
+const SPEAKER = '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+const CHEV = '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5 L16 12 L9 19" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+const pages = [
+  {type:'cover', title:'Cover', icon:'\u{1F4D6}'},
+  ...STORY.map((s,i) => ({type:'story', title:s.title, story:s, n:i+1, icon:'\u{1F4D6}'})),
+  {type:'vocab', title:'Word Bank', icon:'\u{1F524}'},
+  {type:'quiz',  title:'Quiz Time', icon:'\u2753'},
+  {type:'order', title:'Story Order Game', icon:'\u{1F9E9}'},
+  {type:'end',   title:'The End and My Dream Card', icon:'\u{1F31F}'}
+];
+let cur = 0;
+
+const quiz = {i:0, picked:null, score:0, done:false};
+const order = {cards:[], next:0, mistakes:0, placed:{}, msg:''};
+const dream = {name:'', goal:'', pledges:[false,false,false]};
+
+const mark  = s => s.replace(/\[\[(.+?)\|(.+?)\]\]/g, (m,t,k) => `<button type="button" class="vocab" data-act="vocab" data-k="${k}">${t}</button>`);
+const plain = s => s.replace(/\[\[(.+?)\|(.+?)\]\]/g, '$1');
+
+function store(k, v){ try{ localStorage.setItem('lipi:'+k, v); }catch(e){} }
+function load(k){ try{ return localStorage.getItem('lipi:'+k); }catch(e){ return null; } }
+
+/* ============================================================
+   Speech
+   ============================================================ */
+let speechToken = 0;
+function clearHL(){ document.querySelectorAll('.sent.reading').forEach(e => e.classList.remove('reading')); }
+function setListening(on){
+  const b = $('.listen'); if(!b) return;
+  b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  b.querySelector('.lbl').textContent = on ? 'Stop reading' : 'Read aloud';
+}
+function stopSpeech(){
+  speechToken++;
+  if(synth){ try{ synth.cancel(); }catch(e){} }
+  clearHL(); setListening(false);
+}
+function readPage(start, once){
+  const p = pages[cur];
+  if(!synth || p.type !== 'story') return;
+  const token = ++speechToken;
+  try{ synth.cancel(); }catch(e){}
+  const spans = [...document.querySelectorAll('.sent')];
+  const texts = p.story.sentences.map(plain);
+  let i = start;
+  const step = () => {
+    if(token !== speechToken) return;
+    clearHL();
+    if(i >= texts.length){ setListening(false); return; }
+    const idx = i;
+    if(spans[idx]) spans[idx].classList.add('reading');
+    const u = new SpeechSynthesisUtterance(texts[idx]);
+    u.lang = 'en-US'; u.rate = 0.85; u.pitch = 1.05;
+    u.onend = () => {
+      if(token !== speechToken) return;
+      if(once){ clearHL(); setListening(false); return; }
+      i = idx + 1; step();
+    };
+    u.onerror = () => { if(token !== speechToken) return; clearHL(); setListening(false); };
+    synth.speak(u);
+  };
+  setListening(!once);
+  setTimeout(step, 60);
+}
+function sayWord(text){
+  if(!synth) return;
+  stopSpeech();
+  setTimeout(() => {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US'; u.rate = 0.8;
+    synth.speak(u);
+  }, 60);
+}
+
+/* ============================================================
+   Meaning popover
+   ============================================================ */
+function openDef(k){
+  const v = VOCAB[k]; if(!v) return;
+  $('#dWord').textContent = v.w;
+  $('#dBn').textContent = v.bn;
+  $('#dDef').textContent = v.def;
+  $('#dSay').dataset.k = k;
+  $('#dSay').style.display = synth ? '' : 'none';
+  defEl.classList.add('open');
+}
+function closeDef(){ defEl.classList.remove('open'); }
+$('#dSay').innerHTML = SPEAKER;
+$('#dSay').addEventListener('click', e => { const v = VOCAB[e.currentTarget.dataset.k]; if(v) sayWord(v.w); });
+$('#dClose').addEventListener('click', closeDef);
+
+/* ============================================================
+   Page builders
+   ============================================================ */
+const builders = {
+  cover(){
+    return `
+    <div class="art">${ART.cover}</div>
+    <div class="text cover">
+      <h1>Lipi's Bright Dreams</h1>
+      <p class="bnsub bn">লিপির উজ্জ্বল স্বপ্ন</p>
+      <p class="lead">A story about courage, kind friends and a girl who loves chess. Read it, listen to it, learn its new words and play the games at the end.</p>
+      <ul class="feat">
+        ${synth ? '<li>' + SPEAKER + ' Read aloud</li>' : ''}
+        <li>Tap highlighted words for meanings in English and Bangla</li>
+        <li>Quiz and story game</li>
+      </ul>
+      <div class="row">
+        <button class="btn big" data-act="next">Start reading ${CHEV}</button>
+        <button class="btn ghost" data-act="toc">Contents</button>
+      </div>
+    </div>`;
+  },
+  story(p){
+    return `
+    <div class="art">${ART[p.story.art]}</div>
+    <div class="text">
+      <div class="titlerow"><span class="chno" aria-label="Chapter ${p.n}">${p.n}</span><h2>${p.story.title}</h2></div>
+      <p class="body">${p.story.sentences.map((s,i) => `<span class="sent" data-i="${i}">${mark(s)}</span>`).join(' ')}</p>
+      ${synth ? `<div class="row"><button class="btn listen" data-act="listen" aria-pressed="false">${SPEAKER}<span class="lbl">Read aloud</span></button></div>` : ''}
+      <p class="hint">Tap a highlighted word to see what it means. Tap any sentence to hear it.</p>
+    </div>`;
+  },
+  vocab(){
+    return `
+    <h2>Learn the new words</h2>
+    <p class="lead">Tap a card to flip it and see the Bangla meaning. ${synth ? 'Tap the speaker to hear the word.' : ''}</p>
+    <div class="fcgrid">${WORDBANK.map(k => { const v = VOCAB[k]; return `
+      <div class="fc" data-act="flip" tabindex="0" role="button" aria-pressed="false" aria-label="${v.w}, tap to flip">
+        <div class="in">
+          <div class="face front"><span class="w">${v.w}</span>${synth ? `<button class="spk" data-act="say" data-k="${k}" aria-label="Hear ${v.w}">${SPEAKER}</button>` : ''}</div>
+          <div class="face back"><span class="bnw bn">${v.bn}</span><span class="df">${v.def}</span></div>
+        </div>
+      </div>`; }).join('')}
+    </div>`;
+  },
+  quiz(){ return `<h2>Quiz time</h2><p class="lead">How well do you remember Lipi's story?</p><div id="quizBox">${quizHTML()}</div>`; },
+  order(){ return `<h2>Put the story in order</h2><p class="lead">Tap the sentences in the order they happen in the story.</p><div id="orderBox">${orderHTML()}</div>`; },
+  end(){
+    const qTxt = quiz.done ? `${quiz.score} out of ${QUIZ.length}` : 'not taken yet';
+    const oTxt = order.next === ORDER.length ? '\u2605'.repeat(orderStars()) : 'not played yet';
+    return `
+    <div class="text">
+      <div class="titlerow"><h2>Every dream is worth chasing</h2></div>
+      <p class="body" style="margin-top:6px">Lipi shows us that courage, kind friends and a good teacher can help anyone shine. Think about it: how did her classmates and Ms. Anita make her feel welcome? What can you do for a friend?</p>
+      <div class="facts"><div class="fact">Quiz: <b>${qTxt}</b></div><div class="fact">Story game: <b>${oTxt}</b></div></div>
+      <p class="hint" style="margin:0 0 6px">Choose the promises you want to keep.</p>
+      <div class="chips" id="pledges">${PLEDGES.map((t,i) => `<button class="chip" data-act="pledge" data-i="${i}" aria-pressed="${dream.pledges[i]}">${t}</button>`).join('')}</div>
+      <div class="pledgemsg" id="pledgeMsg" role="status">${pledgeMsg()}</div>
+      <div class="row"><button class="btn ghost" data-act="restart">Read again</button></div>
+    </div>
+    <div>
+      <div class="dcard" id="dcard" aria-live="polite">${dreamCardHTML()}</div>
+      <label class="field">Your name<input id="dName" type="text" maxlength="30" autocomplete="off" placeholder="Type your name" value="${dream.name.replace(/"/g,'&quot;')}"></label>
+      <div class="hint" style="margin:0 0 6px">I dream of becoming</div>
+      <div class="chips" id="goals">${GOALS.map(g => `<button class="chip" data-act="goal" data-g="${g}" aria-pressed="${dream.goal===g}">${g}</button>`).join('')}</div>
+      <label class="field">Or write your own dream<input id="dGoal" type="text" maxlength="40" autocomplete="off" placeholder="for example: a pilot" value="${GOALS.includes(dream.goal) ? '' : dream.goal.replace(/"/g,'&quot;')}"></label>
+    </div>`;
+  }
+};
+
+/* ----- quiz ----- */
+function quizHTML(){
+  const n = QUIZ.length;
+  if(quiz.done){
+    const st = Math.round(quiz.score / n * 5);
+    const msg = quiz.score === n ? "Perfect! You remember every detail." : quiz.score >= 5 ? "Great reading! Almost perfect." : quiz.score >= 3 ? "Good try! Read the story once more and try again." : "Keep going! Read the story again and try once more.";
+    return `<div class="score"><div class="bigscore">${quiz.score} / ${n}</div>
+      <div class="stars" aria-label="${st} out of 5 stars">${'\u2605'.repeat(st)}<span class="off">${'\u2605'.repeat(5-st)}</span></div>
+      <p class="lead" style="margin-bottom:18px">${msg}</p>
+      <button class="btn" data-act="q-retry">Try the quiz again</button></div>`;
+  }
+  const q = QUIZ[quiz.i];
+  const bar = QUIZ.map((_,i) => `<i class="${i < quiz.i ? 'on' : i === quiz.i ? 'cur' : ''}"></i>`).join('');
+  const opts = q.o.map((t,j) => {
+    let cls = 'opt', dis = '';
+    if(quiz.picked !== null){ dis = 'disabled'; if(j === q.a) cls += ' correct'; else if(j === quiz.picked) cls += ' wrong'; }
+    return `<button class="${cls}" data-act="q-pick" data-j="${j}" ${dis}><b>${'ABCD'[j]}</b><span>${t}</span></button>`;
+  }).join('');
+  let fb = '';
+  if(quiz.picked !== null){
+    const ok = quiz.picked === q.a;
+    fb = `<div class="fb ${ok ? 'ok' : 'no'}" role="status"><strong>${ok ? 'Correct!' : 'Not quite.'}</strong> ${ok ? '' : 'The answer is \u201C' + q.o[q.a] + '\u201D. '}${q.why}</div>
+          <button class="btn" data-act="q-next">${quiz.i === n-1 ? 'See my score' : 'Next question'}</button>`;
+  }
+  return `<div class="qhead"><span>Question ${quiz.i+1} of ${n}</span><span>Score: ${quiz.score}</span></div><div class="qbar">${bar}</div>
+    <p class="qtext">${q.q}</p><div class="opts">${opts}</div>${fb}`;
+}
+
+/* ----- order game ----- */
+function shuffleOrder(){
+  const arr = ORDER.map((t,i) => ({t,i}));
+  do{
+    for(let i = arr.length-1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); [arr[i],arr[j]] = [arr[j],arr[i]]; }
+  }while(arr.every((c,i) => c.i === i));
+  order.cards = arr; order.next = 0; order.mistakes = 0; order.placed = {}; order.msg = '';
+}
+function orderStars(){ return order.mistakes === 0 ? 3 : order.mistakes <= 2 ? 2 : 1; }
+function orderHTML(){
+  const done = order.next === ORDER.length;
+  const cards = order.cards.map(c => {
+    const n = order.placed[c.i];
+    return `<button class="ocard ${n ? 'placed' : ''}" data-act="o-pick" data-i="${c.i}" ${n ? 'disabled' : ''}><span class="badge">${n || ''}</span><span>${c.t}</span></button>`;
+  }).join('');
+  const st = orderStars();
+  const status = done
+    ? `<div class="fb ok" role="status"><strong>Brilliant!</strong> You put the story in order ${order.mistakes === 0 ? 'without a single mistake' : 'after ' + order.mistakes + ' wrong ' + (order.mistakes === 1 ? 'tap' : 'taps')}. <span style="color:var(--marigold)">${'\u2605'.repeat(st)}</span></div>`
+    : `<p class="hint" role="status" style="margin:0 0 16px">${order.msg || 'Which sentence happens first?'}</p>`;
+  return `<div class="ocards">${cards}</div>${status}<button class="btn ghost" data-act="o-reset">Shuffle again</button>`;
+}
+
+/* ----- end page ----- */
+function pledgeMsg(){ return dream.pledges.every(Boolean) ? "Thank you! Kindness makes every place a happy place." : ""; }
+function dreamCardHTML(){
+  return `<div class="t">My Dream Card</div>
+    <div class="nm"></div>
+    <div class="t" style="font-weight:600">dreams of becoming</div>
+    <div class="goal"></div>
+    <div class="sm">Everyone can achieve amazing things.</div>`;
+}
+function fillDreamCard(){
+  const c = $('#dcard'); if(!c) return;
+  c.querySelector('.nm').textContent = dream.name.trim() || 'Your name';
+  c.querySelector('.goal').textContent = dream.goal.trim() || 'your dream';
+}
+
+/* ============================================================
+   Rendering and navigation
+   ============================================================ */
+function render(dir){
+  stopSpeech(); closeDef();
+  const p = pages[cur];
+  const el = document.createElement('article');
+  el.className = 'page' + (p.type === 'vocab' || p.type === 'quiz' || p.type === 'order' ? ' solo' : '') + (p.type === 'end' ? ' end' : '') + (dir < 0 ? ' back' : '');
+  el.innerHTML = builders[p.type](p);
+  stage.innerHTML = '';
+  stage.appendChild(el);
+  stage.scrollTop = 0;
+  if(p.type === 'end') fillDreamCard();
+  updateNav();
+}
+function go(n){
+  n = Math.max(0, Math.min(pages.length-1, n));
+  if(n === cur) return;
+  const dir = n > cur ? 1 : -1;
+  cur = n; render(dir);
+}
+function updateNav(){
+  $('#prev').disabled = cur === 0;
+  $('#nextLbl').textContent = cur === pages.length-1 ? 'Start over' : 'Next page';
+  $('#next').setAttribute('aria-label', cur === pages.length-1 ? 'Start over' : 'Next page');
+  $('#prev').setAttribute('aria-label', 'Previous page');
+  $('#progLabel').textContent = 'Page ' + (cur+1) + ' of ' + pages.length;
+  $('#progBar').style.width = ((cur+1) / pages.length * 100) + '%';
+}
+$('#prev').addEventListener('click', () => go(cur-1));
+$('#next').addEventListener('click', () => { if(cur === pages.length-1) go(0); else go(cur+1); });
+
+/* ----- contents ----- */
+const toc = $('#toc');
+function openToc(){
+  $('#tocList').innerHTML = pages.map((p,i) => `<li><button class="ti ${i === cur ? 'cur' : ''}" data-go="${i}"><span class="n">${i+1}</span><span>${p.title}</span></button></li>`).join('');
+  toc.classList.add('open');
+  const c = $('.ti.cur'); if(c) c.focus();
+}
+function closeToc(){ toc.classList.remove('open'); }
+$('#btnToc').addEventListener('click', openToc);
+$('#tocClose').addEventListener('click', closeToc);
+toc.addEventListener('click', e => {
+  if(e.target === toc){ closeToc(); return; }
+  const b = e.target.closest('[data-go]');
+  if(b){ closeToc(); go(+b.dataset.go); }
+});
+
+/* ----- text size and theme ----- */
+const SIZES = [0.9, 1, 1.15, 1.3, 1.5];
+let sizeIdx = 1;
+function applySize(){ document.documentElement.style.setProperty('--fs', SIZES[sizeIdx]); store('size', sizeIdx); }
+$('#btnSm').addEventListener('click', () => { sizeIdx = Math.max(0, sizeIdx-1); applySize(); });
+$('#btnLg').addEventListener('click', () => { sizeIdx = Math.min(SIZES.length-1, sizeIdx+1); applySize(); });
+function isDark(){
+  const t = document.documentElement.dataset.theme;
+  if(t) return t === 'dark';
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+$('#btnTheme').addEventListener('click', () => {
+  const next = isDark() ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next; store('theme', next);
+});
+(function restore(){
+  const s = parseInt(load('size'), 10); if(!isNaN(s) && s >= 0 && s < SIZES.length){ sizeIdx = s; applySize(); }
+  const t = load('theme'); if(t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+})();
+
+/* ============================================================
+   Interaction
+   ============================================================ */
+stage.addEventListener('click', e => {
+  const t = e.target.closest('[data-act]');
+  if(!t){
+    const s = e.target.closest('.sent');
+    if(s){ closeDef(); readPage(+s.dataset.i, true); return; }
+    closeDef(); return;
+  }
+  const act = t.dataset.act;
+  if(act !== 'vocab') closeDef();
+  switch(act){
+    case 'next': go(cur+1); break;
+    case 'toc': openToc(); break;
+    case 'vocab': e.stopPropagation(); openDef(t.dataset.k); break;
+    case 'listen':
+      if(t.getAttribute('aria-pressed') === 'true') stopSpeech(); else readPage(0, false);
+      break;
+    case 'say': sayWord(VOCAB[t.dataset.k].w); break;
+    case 'flip': {
+      const on = t.classList.toggle('flipped'); t.setAttribute('aria-pressed', on); break;
+    }
+    case 'q-pick': {
+      if(quiz.picked !== null) break;
+      quiz.picked = +t.dataset.j;
+      if(quiz.picked === QUIZ[quiz.i].a) quiz.score++;
+      $('#quizBox').innerHTML = quizHTML();
+      const nb = $('#quizBox [data-act="q-next"]'); if(nb) nb.focus();
+      break;
+    }
+    case 'q-next':
+      quiz.picked = null;
+      if(quiz.i === QUIZ.length-1) quiz.done = true; else quiz.i++;
+      $('#quizBox').innerHTML = quizHTML();
+      break;
+    case 'q-retry':
+      quiz.i = 0; quiz.picked = null; quiz.score = 0; quiz.done = false;
+      $('#quizBox').innerHTML = quizHTML();
+      break;
+    case 'o-pick': {
+      const i = +t.dataset.i;
+      if(i === order.next){
+        order.next++; order.placed[i] = order.next; order.msg = 'Yes! What happens next?';
+        $('#orderBox').innerHTML = orderHTML();
+      }else{
+        order.mistakes++; order.msg = 'Not yet. Think about what happened earlier in the story.';
+        $('#orderBox').innerHTML = orderHTML();
+        const el = $('#orderBox [data-i="'+i+'"]');
+        if(el){ el.classList.add('shake'); el.addEventListener('animationend', () => el.classList.remove('shake'), {once:true}); }
+      }
+      break;
+    }
+    case 'o-reset': shuffleOrder(); $('#orderBox').innerHTML = orderHTML(); break;
+    case 'goal':
+      dream.goal = t.dataset.g;
+      document.querySelectorAll('#goals .chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.g === dream.goal));
+      $('#dGoal').value = ''; fillDreamCard(); break;
+    case 'pledge': {
+      const i = +t.dataset.i; dream.pledges[i] = !dream.pledges[i];
+      t.setAttribute('aria-pressed', dream.pledges[i]); $('#pledgeMsg').textContent = pledgeMsg(); break;
+    }
+    case 'restart': go(0); break;
+  }
+});
+stage.addEventListener('input', e => {
+  if(e.target.id === 'dName'){ dream.name = e.target.value; fillDreamCard(); }
+  if(e.target.id === 'dGoal'){
+    dream.goal = e.target.value;
+    document.querySelectorAll('#goals .chip').forEach(c => c.setAttribute('aria-pressed', 'false'));
+    fillDreamCard();
+  }
+});
+stage.addEventListener('keydown', e => {
+  if((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('fc')){
+    e.preventDefault(); e.target.click();
+  }
+});
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape'){ closeDef(); closeToc(); return; }
+  const tag = (e.target.tagName || '').toLowerCase();
+  if(tag === 'input' || tag === 'textarea' || toc.classList.contains('open')) return;
+  if(e.key === 'ArrowRight') go(cur+1);
+  if(e.key === 'ArrowLeft') go(cur-1);
+});
+let tx = 0, ty = 0;
+stage.addEventListener('touchstart', e => { const t = e.changedTouches[0]; tx = t.clientX; ty = t.clientY; }, {passive:true});
+stage.addEventListener('touchend', e => {
+  const t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty;
+  if(Math.abs(dx) > 80 && Math.abs(dy) < 45){ dx < 0 ? go(cur+1) : go(cur-1); }
+}, {passive:true});
+document.addEventListener('visibilitychange', () => { if(document.hidden) stopSpeech(); });
+
+shuffleOrder();
+render(1);
+</script>
+</body>
+</html>
